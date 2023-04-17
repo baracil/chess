@@ -1,0 +1,5 @@
+micronaut:
+  http:
+    client:
+      ssl:
+        port: 8080
