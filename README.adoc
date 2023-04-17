@@ -1,6 +1,6 @@
 = Chess Drawer
 
-A simple Java application to draw chess board from a line.
+A simple Java application to draw chess boards from a line.
 
 == Build
 Execute `mvn -p build-docker clean package` to create the docker image of the server. When the server is launched, browsing to the following URL :
