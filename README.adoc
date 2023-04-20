@@ -5,7 +5,7 @@ A simple Java application to draw chess boards from a line.
 == Build
 Execute `mvn -p build-docker clean package` to create the docker image of the server. When the server is launched, browsing to the following URL :
 
-`http://localhost:8080/v1/board.png?line=1.e4_c6_2.d4_d5`
+`http://localhost:8080/v1/board/1.e4_c6_2.d4_d5`
 
 will return this image :
 
@@ -20,6 +20,8 @@ image::images/board.png[]
 |size | 1,2,3,4 | Select a size for the squares (1:16px, 2:32px, 3:64px, 4:128px)
 |inv | true/false | if true, the board is inverted (black at the bottom)
 |===
+
+Space character between move can be also used instead of the underscore.
 
 === Cli command
 
