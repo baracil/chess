@@ -76,6 +76,12 @@
                   <arg value="net-femtoparsec/chess:${project.version}"/>
                   <arg value="."/>
                 </exec>
+                <exec executable="docker" dir="${project.build.directory}">
+                  <arg value="save"/>
+                  <arg value="net-femtoparsec/chess:${project.version}"/>
+                  <arg value="-o"/>
+                  <arg value="chess.tar"/>
+                </exec>
               </target>
             </configuration>
           </execution>
