@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.drawer;
 
 import lombok.AccessLevel;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.*;
 
@@ -13,19 +12,19 @@ import java.awt.image.BufferedImage;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class BoardDrawer {
 
-  public static @NonNull BufferedImage draw(@NonNull Board board,
-                                            @NonNull DrawParameter drawParameter,
-                                            @NonNull ImageProvider imageProvider) {
+  public static BufferedImage draw(Board board,
+                                            DrawParameter drawParameter,
+                                            ImageProvider imageProvider) {
     return new BoardDrawer(board, drawParameter, imageProvider).draw();
   }
 
-  private final @NonNull Board board;
-  private final @NonNull DrawParameter parameter;
-  private final @NonNull ImageProvider imageProvider;
+  private final Board board;
+  private final DrawParameter parameter;
+  private final ImageProvider imageProvider;
 
   private BufferedImage image = null;
 
-  private @NonNull BufferedImage draw() {
+  private BufferedImage draw() {
     this.createBoard();
     this.drawPieces();
     if (parameter.isWithCoordinates()) {
@@ -50,7 +49,7 @@ public class BoardDrawer {
     Rank.stream().map(r -> Location.with(file, r)).forEach(this::drawNumber);
   }
 
-  private void drawLetter(@NonNull Location location) {
+  private void drawLetter(Location location) {
     final var letter = location.getFile().getCharacter();
     final var point = getCoordinate(location);
     final var color = getTextColor(location);
@@ -67,7 +66,7 @@ public class BoardDrawer {
     }
   }
 
-  private void drawNumber(@NonNull Location location) {
+  private void drawNumber(Location location) {
     final var letter = location.getRank().getCharacter();
     final var point = getCoordinate(location);
     final var color = getTextColor(location);
@@ -84,21 +83,21 @@ public class BoardDrawer {
     }
   }
 
-  private Color getCellColor(@NonNull Location location) {
+  private Color getCellColor(Location location) {
     if ((location.getFile().getIndex() + location.getRank().getIndex()) % 2 == 0) {
       return parameter.getDarkColor();
     }
     return parameter.getLightColor();
   }
 
-  private Color getTextColor(@NonNull Location location) {
+  private Color getTextColor(Location location) {
     if ((location.getFile().getIndex() + location.getRank().getIndex()) % 2 == 0) {
       return parameter.getLightColor();
     }
     return parameter.getDarkColor();
   }
 
-  private void drawPiece(@NonNull Piece piece, @NonNull Location location) {
+  private void drawPiece(Piece piece, Location location) {
     final var point = getCoordinate(location);
     final var img = imageProvider.getImage(piece, parameter.getSize());
     var g = image.createGraphics();
@@ -128,7 +127,7 @@ public class BoardDrawer {
     }
   }
 
-  private Point getCoordinate(@NonNull Location location) {
+  private Point getCoordinate(Location location) {
     final var file = location.getCoordinate().file();
     final var rank = (7 - location.getCoordinate().rank());
     final var x = (parameter.isInverted() ? 7 - file : file) * parameter.getSizeValue();

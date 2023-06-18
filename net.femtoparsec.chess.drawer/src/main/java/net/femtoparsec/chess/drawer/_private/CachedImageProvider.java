@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.drawer._private;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.Piece;
 import net.femtoparsec.chess.drawer.ImageProvider;
@@ -15,11 +14,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CachedImageProvider implements ImageProvider {
 
-  private final @NonNull ImageProvider delegate;
+  private final ImageProvider delegate;
   private final Map<Key, Reference<BufferedImage>> cache = new HashMap<>();
 
   @Override
-  public @NonNull BufferedImage getImage(@NonNull Piece piece, @NonNull Size size) {
+  public BufferedImage getImage(Piece piece, Size size) {
     final var key = new Key(piece,size);
     final var reference = cache.get(key);
     final var cached = reference == null ? null : reference.get();

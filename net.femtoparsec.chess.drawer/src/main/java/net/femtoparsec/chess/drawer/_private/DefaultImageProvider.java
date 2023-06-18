@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.drawer._private;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.Piece;
 import net.femtoparsec.chess.drawer.ImageProvider;
@@ -16,7 +15,7 @@ import java.io.UncheckedIOException;
 public class DefaultImageProvider implements ImageProvider {
 
   @Override
-  public @NonNull BufferedImage getImage(@NonNull Piece piece, @NonNull Size size) {
+  public BufferedImage getImage(Piece piece, Size size) {
     try {
       final var url = PieceImage.findImage(piece).getResourceUrl(size);
       return ImageIO.read(url);

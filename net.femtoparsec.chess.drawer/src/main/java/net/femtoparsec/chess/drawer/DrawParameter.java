@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.drawer;
 
 import lombok.Builder;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
@@ -14,11 +13,11 @@ public class DrawParameter {
   private static final Color DEFAULT_LIGHT_COLOR = new Color(208, 208, 208);
   private static final Color DEFAULT_DARK_COLOR = new Color(100, 155, 100);
 
-  @NonNull Color lightColor;
-  @NonNull Color darkColor;
+  Color lightColor;
+  Color darkColor;
   boolean withCoordinates;
   boolean inverted;
-  @NonNull Size size;
+  Size size;
 
   public static Builder builder() {
     return new Builder()

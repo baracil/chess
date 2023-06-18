@@ -2,7 +2,6 @@ package net.femtoparsec.chess.board;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Value;
 
 import java.util.Optional;
@@ -12,7 +11,7 @@ public sealed interface Move permits Move.Castling, Move.Basic {
 
   @Value
   final class Castling implements Move {
-    @NonNull String sanNotation;
+    String sanNotation;
     @Getter
     boolean kingSide;
 
@@ -32,19 +31,19 @@ public sealed interface Move permits Move.Castling, Move.Basic {
   @Value
   @Builder
   final class Basic implements Move {
-    @NonNull String sanNotation;
-    @NonNull PieceType type;
-    @NonNull Location target;
+    String sanNotation;
+    PieceType type;
+    Location target;
     Discriminant discriminant;
     PieceType promotion;
     boolean take;
     boolean check;
 
-    public @NonNull Discriminant getDiscriminant() {
+    public Discriminant getDiscriminant() {
       return discriminant == null?Discriminant.NONE:discriminant;
     }
 
-    public @NonNull Optional<PieceType> getPromotion() {
+    public Optional<PieceType> getPromotion() {
       return Optional.ofNullable(promotion);
     }
   }

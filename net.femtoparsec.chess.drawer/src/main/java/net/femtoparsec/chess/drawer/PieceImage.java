@@ -2,7 +2,6 @@ package net.femtoparsec.chess.drawer;
 
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.Piece;
 
@@ -31,14 +30,14 @@ public enum PieceImage {
   ;
 
   @Getter
-  private final @NonNull Piece piece;
-  private final @NonNull String prefix;
+  private final Piece piece;
+  private final String prefix;
 
-  public static @NonNull PieceImage findImage(@NonNull Piece piece) {
+  public static PieceImage findImage(Piece piece) {
     return Objects.requireNonNull(Holder.IMAGE_BY_PIECE.get(piece));
   }
 
-  public @NonNull URL getResourceUrl(Size size) {
+  public URL getResourceUrl(Size size) {
     final var result = PieceImage.class.getResource("%s_%d.png".formatted(this.prefix,size.getValue()));
     if (result == null) {
       throw new IllegalStateException("No image defined for piece '"+this.piece+"' and size="+size.getValue());

@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board._private;
 
-import lombok.NonNull;
 import net.femtoparsec.chess.board.ImmutableBoard;
 import net.femtoparsec.chess.board.Location;
 import net.femtoparsec.chess.board.MutableBoard;
@@ -18,17 +17,17 @@ public class DefaultImmutableBoard implements ImmutableBoard {
   }
 
   @Override
-  public @NonNull ImmutableBoard createSnapshot() {
+  public ImmutableBoard createSnapshot() {
     return this;
   }
 
   @Override
-  public @NonNull MutableBoard createMutable() {
+  public MutableBoard createMutable() {
     return DefaultMutableBoard.create(pieces);
   }
 
   @Override
-  public @NonNull Optional<Piece> pieceAt(Location location) {
+  public Optional<Piece> pieceAt(Location location) {
     return Optional.ofNullable(pieces.get(location));
   }
 

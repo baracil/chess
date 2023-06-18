@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board._private;
 
-import lombok.NonNull;
 import net.femtoparsec.chess.board.PieceMapping;
 import net.femtoparsec.chess.board.PieceType;
 
@@ -20,7 +19,7 @@ public enum LocalePieceMapping implements PieceMapping {
   }
 
   @Override
-  public @NonNull Optional<PieceType> map(char character) {
+  public Optional<PieceType> map(char character) {
     for (int i = 0; i < names.length; i++) {
       if (names[i] == character) {
         return Optional.of(TYPES[i]);

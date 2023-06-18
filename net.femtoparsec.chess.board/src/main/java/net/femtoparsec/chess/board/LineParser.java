@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.AccessLevel;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -14,12 +13,12 @@ public class LineParser {
 
   private static final Pattern PATTERN = Pattern.compile("[0-9]+\\.(?<extra>\\.\\.)? ?(?<move>.+)?");
 
-  public static Line parse(@NonNull String line, @NonNull String language) {
+  public static Line parse(String line, String language) {
     return new LineParser(line.trim(),new MoveParser(PieceMapping.forLanguage(language))).parse();
   }
 
-  private final @NonNull String line;
-  private final @NonNull MoveParser moveParser;
+  private final String line;
+  private final MoveParser moveParser;
   private final List<Move> moves = new ArrayList<>();
 
   private Color color = null;

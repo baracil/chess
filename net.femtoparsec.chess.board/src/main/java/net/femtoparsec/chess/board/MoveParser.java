@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
@@ -8,16 +7,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MoveParser {
 
-  private final @NonNull PieceMapping pieceMapping;
+  private final PieceMapping pieceMapping;
 
-  public @NonNull Move parse(@NonNull String move) {
+  public Move parse(String move) {
     return new Parsing(move).parse();
   }
 
   @RequiredArgsConstructor
   private class Parsing {
 
-    private final @NonNull String move;
+    private final String move;
     private Move parsedMove = null;
     private int pos = 0;
     private PieceType pieceType = null;
@@ -27,7 +26,7 @@ public class MoveParser {
     private Location location = null;
     private PieceType promotion = null;
 
-    private @NonNull Move parse() {
+    private Move parse() {
       this.checkCastling();
       if (parsedMove != null) {
         return parsedMove;

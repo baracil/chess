@@ -2,7 +2,6 @@ package net.femtoparsec.chess.board;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Line {
   private final Color firstMoveColor;
   private final List<Move> moves;
 
-  public @NonNull List<Piece> applyToBoard(MutableBoard board) {
+  public List<Piece> applyToBoard(MutableBoard board) {
     final List<Piece> removed = new ArrayList<>();
     var color = firstMoveColor;
     for (Move move : moves) {

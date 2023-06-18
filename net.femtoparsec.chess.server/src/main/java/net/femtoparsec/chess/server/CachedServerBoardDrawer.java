@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.server;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.Line;
 import net.femtoparsec.chess.drawer.DrawParameter;
@@ -14,12 +13,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CachedServerBoardDrawer implements ServerBoardDrawer {
 
-  private final @NonNull ServerBoardDrawer delegate;
+  private final ServerBoardDrawer delegate;
 
   private final Map<Key, Reference<BufferedImage>> cache = new HashMap<>();
 
   @Override
-  public @NonNull BufferedImage draw(@NonNull Line line, @NonNull DrawParameter parameter) {
+  public BufferedImage draw(Line line, DrawParameter parameter) {
     final var key = new Key(line,parameter);
     final var reference = cache.get(key);
     final var image = reference == null ? null:reference.get();
@@ -34,5 +33,5 @@ public class CachedServerBoardDrawer implements ServerBoardDrawer {
     return newImage;
   }
 
-  private record Key(@NonNull Line line, @NonNull DrawParameter parameter) {}
+  private record Key(Line line, DrawParameter parameter) {}
 }

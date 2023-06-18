@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -25,15 +24,15 @@ public enum Piece {
   BLACK_PAWN(PieceType.PAWN, Color.BLACK),
   ;
 
-  private final @NonNull PieceType type;
-  private final @NonNull Color color;
+  private final PieceType type;
+  private final Color color;
 
-  Piece(@NonNull PieceType type, @NonNull Color color) {
+  Piece(PieceType type, Color color) {
     this.type = type;
     this.color = color;
   }
 
-  public static @NonNull Piece with(@NonNull PieceType type, @NonNull Color color) {
+  public static Piece with(PieceType type, Color color) {
     return Holder.MAP.get(color).get(type);
   }
 

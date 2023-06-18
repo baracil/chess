@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,9 +22,9 @@ public enum Location {
   A8, B8, C8, D8, E8, F8, G8, H8,
   ;
 
-  private final @NonNull Coordinate coordinate;
-  private final @NonNull File file;
-  private final @NonNull Rank rank;
+  private final Coordinate coordinate;
+  private final File file;
+  private final Rank rank;
 
   Location() {
     final var file = (this.name().charAt(0)-'A');
@@ -35,7 +34,7 @@ public enum Location {
     this.coordinate = new Coordinate(file,rank);
   }
 
-  public @NonNull Delta minus(@NonNull Location other) {
+  public Delta minus(Location other) {
     return this.coordinate.minus(other.coordinate);
   }
 
@@ -43,19 +42,19 @@ public enum Location {
     return fromCoordinate(new Coordinate(file, rank));
   }
 
-  public static Optional<Location> fromCoordinate(@NonNull Coordinate coordinate) {
+  public static Optional<Location> fromCoordinate(Coordinate coordinate) {
     return Optional.ofNullable(Holder.COORDINATE_TO_POSITION.get(coordinate));
   }
 
-  public Optional<Location> add(@NonNull Delta delta) {
+  public Optional<Location> add(Delta delta) {
     return at(this.file.getIndex()+delta.deltaFile(), this.rank.getIndex()+delta.deltaRank());
   }
 
-  public static @NonNull Location with(@NonNull File file, @NonNull Rank rank) {
+  public static Location with(File file, Rank rank) {
     return fromCoordinate(new Coordinate(file.getIndex(), rank.getIndex())).orElseThrow();
   }
 
-  public static @NonNull Stream<Location> stream() {
+  public static Stream<Location> stream() {
     return Holder.ALL_LOCATIONS.stream();
   }
 

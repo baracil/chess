@@ -7,7 +7,6 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.QueryValue;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.LineParser;
 import net.femtoparsec.chess.drawer.DrawParameter;
@@ -23,12 +22,12 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ChessImageController {
 
-  private final @NonNull ServerBoardDrawer drawer;
+  private final ServerBoardDrawer drawer;
 
   @Get(value = "/v1/board/{line}", produces = MediaType.IMAGE_PNG)
   public HttpResponse<byte[]> getBoardImage(
       @PathVariable String line,
-      @QueryValue(value = "size", defaultValue = "3") int size,
+      @QueryValue(value = "size", defaultValue = "2") int size,
       @QueryValue(value = "lc", defaultValue = "D0D0D0") String lc,
       @QueryValue(value = "dc", defaultValue = "649B64") String dc,
       @QueryValue(value = "inv", defaultValue = "false") boolean inverted,

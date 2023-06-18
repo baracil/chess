@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board;
 
-import lombok.NonNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,7 +30,7 @@ public class MoveParseTest {
 
   @ParameterizedTest
   @MethodSource("moves")
-  public void shouldBeCorrectlyParsed(@NonNull String move, @NonNull Move expected) {
+  public void shouldBeCorrectlyParsed(String move, Move expected) {
     final var actual = moveParser.parse(move);
     Assertions.assertEquals(expected, actual);
   }

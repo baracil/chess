@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public enum File {
   ;
 
   @Getter
-  private final @NonNull String character;
+  private final String character;
   @Getter
   private final int index;
 

@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board._private;
 
-import lombok.NonNull;
 import net.femtoparsec.chess.board.*;
 
 import java.util.*;
@@ -12,13 +11,13 @@ public class DefaultMutableBoard implements MutableBoard {
     return new DefaultMutableBoard(new HashMap<>());
   }
 
-  public static MutableBoard create(@NonNull List<PieceWithLocation> pieces) {
+  public static MutableBoard create(List<PieceWithLocation> pieces) {
     final var map = new HashMap<Location, Piece>();
     pieces.forEach(p -> map.put(p.getLocation(), p.getPiece()));
     return new DefaultMutableBoard(map);
   }
 
-  public static MutableBoard create(@NonNull Map<Location, Piece> pieces) {
+  public static MutableBoard create(Map<Location, Piece> pieces) {
     return new DefaultMutableBoard(new HashMap<>(pieces));
   }
 
@@ -31,24 +30,24 @@ public class DefaultMutableBoard implements MutableBoard {
   }
 
   @Override
-  public @NonNull ImmutableBoard createSnapshot() {
+  public ImmutableBoard createSnapshot() {
     return new DefaultImmutableBoard(Map.copyOf(pieces));
   }
 
   @Override
-  public @NonNull DefaultMutableBoard createMutable() {
+  public DefaultMutableBoard createMutable() {
     return new DefaultMutableBoard(new HashMap<>(this.pieces));
   }
 
   @Override
-  public @NonNull Optional<Piece> putPiece(@NonNull Location location, @NonNull Piece piece) {
+  public Optional<Piece> putPiece(Location location, Piece piece) {
     final var removed = this.removePiece(location);
     this.pieces.put(location, piece);
     this.locationPerPieces.computeIfAbsent(piece, p -> new HashSet<>()).add(location);
     return removed;
   }
 
-  public @NonNull Optional<Piece> removePiece(@NonNull Location location) {
+  public Optional<Piece> removePiece(Location location) {
     final var current = this.pieces.remove(location);
     if (current == null) {
       return Optional.empty();
@@ -61,7 +60,7 @@ public class DefaultMutableBoard implements MutableBoard {
   }
 
   @Override
-  public @NonNull Optional<Piece> performMove(@NonNull Color color, @NonNull Move move) {
+  public Optional<Piece> performMove(Color color, Move move) {
     if (move instanceof Move.Castling castling) {
       this.performCastling(color, castling);
       return Optional.empty();
@@ -99,7 +98,7 @@ public class DefaultMutableBoard implements MutableBoard {
     }
   }
 
-  protected @NonNull Optional<Piece> performBasicMove(Color color, Move.Basic move) {
+  protected Optional<Piece> performBasicMove(Color color, Move.Basic move) {
     final var start = findStart(color,move);
     final var target = move.getTarget();
     final var piece = Objects.requireNonNull(this.pieces.get(start));
@@ -121,7 +120,7 @@ public class DefaultMutableBoard implements MutableBoard {
     return took;
   }
 
-  private @NonNull Location findStart(Color color, Move.Basic move) {
+  private Location findStart(Color color, Move.Basic move) {
     final var piece = Piece.with(move.getType(), color);
     return this.locationPerPieces.get(piece)
         .stream()
@@ -131,11 +130,11 @@ public class DefaultMutableBoard implements MutableBoard {
         .orElseThrow(() -> new IllegalArgumentException("Invalid move : " + move));
   }
 
-  private boolean canReach(@NonNull Piece piece, Location origin, Location target) {
+  private boolean canReach(Piece piece, Location origin, Location target) {
     return MoveCheck.canReach(piece,origin,target,this);
   }
 
-  private @NonNull Optional<Piece> move(Location from, Location to) {
+  private Optional<Piece> move(Location from, Location to) {
     final var piece = this.removePiece(from).orElseThrow(() -> new IllegalArgumentException("Invalid move from=" + from + " to=" + to));
     final var removed = this.removePiece(to);
     this.putPiece(to, piece);
@@ -143,7 +142,7 @@ public class DefaultMutableBoard implements MutableBoard {
   }
 
   @Override
-  public @NonNull Optional<Piece> pieceAt(Location location) {
+  public Optional<Piece> pieceAt(Location location) {
     return Optional.ofNullable(pieces.get(location));
   }
 

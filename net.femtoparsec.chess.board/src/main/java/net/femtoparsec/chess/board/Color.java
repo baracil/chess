@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -13,7 +12,7 @@ public enum Color {
   private final int mask;
 
 
-  public @NonNull Color swap() {
+  public Color swap() {
     return this == WHITE?BLACK:WHITE;
   }
 }

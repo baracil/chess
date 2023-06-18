@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.server;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.femtoparsec.chess.board.Board;
 import net.femtoparsec.chess.board.Line;
@@ -13,10 +12,10 @@ import java.awt.image.BufferedImage;
 @RequiredArgsConstructor
 public class DefaultServerBoardDrawer implements ServerBoardDrawer {
 
-  private final @NonNull ImageProvider imageProvider;
+  private final ImageProvider imageProvider;
 
   @Override
-  public @NonNull BufferedImage draw(@NonNull Line line, @NonNull DrawParameter parameter) {
+  public BufferedImage draw(Line line, DrawParameter parameter) {
     final var board = Board.createStart();
     line.applyToBoard(board);
     return BoardDrawer.draw(board,parameter,imageProvider);

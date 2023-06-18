@@ -1,7 +1,5 @@
 package net.femtoparsec.chess.board;
 
-import lombok.NonNull;
-
 public record Delta(int deltaFile, int deltaRank) {
 
   public boolean isHorizontal() {
@@ -21,7 +19,7 @@ public record Delta(int deltaFile, int deltaRank) {
         || (Math.abs(deltaFile) == 2 && Math.abs(deltaRank) == 1);
   }
 
-  public @NonNull Delta sign() {
+  public Delta sign() {
     return new Delta(Integer.compare(deltaFile, 0),Integer.compare(deltaRank, 0));
   }
 

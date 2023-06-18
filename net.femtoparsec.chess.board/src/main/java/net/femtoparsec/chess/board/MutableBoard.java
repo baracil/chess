@@ -1,16 +1,14 @@
 package net.femtoparsec.chess.board;
 
-import lombok.NonNull;
-
 import java.util.Optional;
 
 public interface MutableBoard extends Board {
 
-  @NonNull Optional<Piece> putPiece(@NonNull Location location, @NonNull Piece piece);
+  Optional<Piece> putPiece(Location location, Piece piece);
 
-  @NonNull Optional<Piece> removePiece(@NonNull Location location);
+  Optional<Piece> removePiece(Location location);
 
-  @NonNull Optional<Piece> performMove(@NonNull Color color, @NonNull Move move);
+  Optional<Piece> performMove(Color color, Move move);
 
 
 }

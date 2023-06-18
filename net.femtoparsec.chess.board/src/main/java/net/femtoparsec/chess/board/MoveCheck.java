@@ -1,21 +1,20 @@
 package net.femtoparsec.chess.board;
 
 import lombok.AccessLevel;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class MoveCheck {
 
 
-  public static boolean canReach(@NonNull Piece piece, @NonNull Location from, @NonNull Location target, @NonNull Board board) {
+  public static boolean canReach(Piece piece, Location from, Location target, Board board) {
     return new MoveCheck(piece, from, target, board).canReach();
   }
 
-  private final @NonNull Piece piece;
-  private final @NonNull Location from;
-  private final @NonNull Location target;
-  private final @NonNull Board board;
+  private final Piece piece;
+  private final Location from;
+  private final Location target;
+  private final Board board;
 
 
   private boolean canReach() {

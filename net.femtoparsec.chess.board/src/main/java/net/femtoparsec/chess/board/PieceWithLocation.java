@@ -1,6 +1,5 @@
 package net.femtoparsec.chess.board;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
@@ -9,8 +8,8 @@ import java.util.List;
 @Value
 @RequiredArgsConstructor(staticName = "with")
 public class PieceWithLocation {
-  @NonNull Piece piece;
-  @NonNull Location location;
+  Piece piece;
+  Location location;
 
 
   public static List<PieceWithLocation> INITIAL_DISPOSITION = List.of(

@@ -1,7 +1,6 @@
 package net.femtoparsec.chess.board;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public enum Rank {
   ;
 
   @Getter
-  private final @NonNull String character;
+  private final String character;
 
   @Getter
   private final int index;
@@ -47,7 +46,7 @@ public enum Rank {
     return new Discriminant(this);
   }
 
-  public @NonNull Rank below() {
+  public Rank below() {
     return switch (this) {
       case _1 -> throw new IllegalArgumentException("No rank below 1");
       case _2 -> _1;
@@ -60,7 +59,7 @@ public enum Rank {
     };
   }
 
-  public @NonNull Rank above() {
+  public Rank above() {
     return switch (this) {
       case _1 -> _2;
       case _2 -> _3;
